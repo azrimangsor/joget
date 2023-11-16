@@ -17,7 +17,7 @@ Write a Cypress test case
 Question 6:
 Go to https://www.joget.com/, use Javascript to make the nav bar disappear. Send us the code.
 
-![alt text]()
+![alt text](https://github.com/azrimangsor/joget/blob/main/Question_6.png)
 
 1. Select the navigation bar element in development tool
 2. In the CSS under element.style add following code 'visibility: hidden;'
