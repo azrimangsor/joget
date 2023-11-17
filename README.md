@@ -54,11 +54,16 @@ Go to https://www.joget.com/, use Javascript to make the nav bar disappear. Send
 **Question 7:**
 
 Answer the following in your own words.
-a) How do you install Cypress and set up your first test?
-b) How do you handle authentication and authorization in Cypress tests?
-c) What is the role of the Cypress Test Runner and what features does it offer?
-d) How do you integrate Cypress into a Continuous Integration (CI) pipeline?
-e) How do you handle dynamic data and input fields in Cypress tests?
-f) How do you add dependency to Cypress?
+1. How do you install Cypress and set up your first test?
+
+2. How do you handle authentication and authorization in Cypress tests?
+
+3. What is the role of the Cypress Test Runner and what features does it offer?
+
+4. How do you integrate Cypress into a Continuous Integration (CI) pipeline?
+
+5. How do you handle dynamic data and input fields in Cypress tests?
+
+6. How do you add dependency to Cypress?
 
 Please refer to Question_7.txt for answer
