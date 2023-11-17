@@ -1,0 +1,209 @@
+Question 7:
+Answer the following in your own words.
+
+a) How do you install Cypress and set up your first test?
+
+    Pre Installation
+    - Install Node.js and Node Version Manager (nvm)
+    - Setup Node Package Manger (npm)
+    - verified all installed and properly Setup
+
+    1. Create project folder
+
+    2. Initialise new package.json into project folder by running 'npm init'
+
+    3. Once pre-installation done, proceed to install cypress using 'npm'. Run following command, 'npm install cypress --save-dev'
+
+    4. Once installation is done, update package.json with following line '"cypress:open": "cypress open"' under scripts. This allow me to run cypress through short cut and different configuration
+
+    5. Run Cypress for the first time by command 'npm run cypress:open'
+
+    6. Cypress Launchpad launch and walkthrough with the setup wizard
+
+    7. Select testing type; in my case is 'E2E Testing'
+
+    8. Select browser to use; in my case is Chrome
+
+    9. Navigate to Spec page to setup first spec file. The spec file contains sample code ready to run and verify test is working.
+
+    10. Click on the spec file created and Cypress Test Runner page will appear to show the test execution
+
+    11. I start with my test scripting once verified Cypress test run successfully
+
+b) How do you handle authentication and authorization in Cypress tests?
+
+    In my own experience the way to handle authentication 
+
+    - Create hook file to pass any authorization token and manage the authentication before start testing on any of the spec file (before(), beforeEach())
+
+    - For authentication using username & password, I stored in as environment variable. The variable later can be called to be type in on the UI element. 
+    Username & password will be masked to ensure privacy & security. This is also useful later when integrating with CI process.
+
+    As an example for this question we will use combination of commands and environment variables. 
+
+    1. Add Username & Password as environment variable in package.json
+
+        // package.json
+        {
+        "env": {
+            "USERNAME": "username",
+            "PASSWORD": "password"
+        }
+
+    2. Create custom command to handle authentication and authorization. This can be done by adding custom command inside 'support/commands.js'
+
+        // cypress/support/commands.js
+        Cypress.Commands.add('login', () => {
+            const username = Cypress.env('USERNAME')
+            const password = Cypress.env('PASSWORD')
+
+            // usiming this is the page for login page
+            cy.visit('/login')
+        
+            // insert username & password
+            cy.get('#username').type(username)
+            cy.get('#password').type(password)
+        
+            // submit the form
+            cy.get('form').submit()
+            })
+        }
+    
+    3. Finally write Cypress test in a spec file to test the authentication and authorization
+
+    // test.spec.js
+    describe('Log In Tests', () => {
+    
+    beforeEach(() => {
+        cy.login()
+    });
+
+    it('should perform some authorization actions', () => {
+        cy.get('#welcome-banner').should('be.visible').then(() => {
+            // Success message
+            cy.log("Welcome, User")
+      })
+      .catch(() => {
+        // Unsuccessful message
+        cy.get('#error-message').should('be.visible')
+        cy.log("Unauthorized user")
+      })
+    })
+    })
+
+c) What is the role of the Cypress Test Runner and what features does it offer?
+
+    Cypress Test Runner provide an interactive environment for running and managing your end-to-end tests. Following are some features in Cypress Test Runner;
+
+        - Live test execution
+        - Reload testing
+        - Screenshot and videos
+        - Test log
+        - Element selector
+
+d) How do you integrate Cypress into a Continuous Integration (CI) pipeline?
+
+    - Install and configure Cypress
+
+    - Prepare Cypress test script
+
+    - Update 'npm' script inside 'package.json'. Set the test to be run in headless mode without invoke the UI
+
+        // package.json
+        {
+        "scripts": 
+            {
+                "test": "cypress run --headless"
+            }
+        }
+
+    - CI configuration
+
+        1. Install NodeJS plugins
+
+        2. Configure Jenkins jobs with following script
+
+            npm install
+            npm test
+
+        3.Update secret variable if there any username password to be passed
+
+    - Setup & configure reporting for Cypress test execution
+
+e) How do you handle dynamic data and input fields in Cypress tests?
+
+    In my experience, we can you fixture file to create set of data. This will allow data to be dynamic.
+    Following are method and implementation to handle dynamic data and input fields in Cypress.
+
+    Example Solution:
+
+        Create a JSON file in Fixtures folder to hold expected values
+        // email.json
+        {
+            "email": ["randomEmail@example.com","randomEmail@gmail.com","randomEmail@yahoo.com","randomEmail@joget.com"]
+        }
+
+        Write a spec file which will call and utilise the dynamic data
+        // Command to read the fixture data
+        Cypress.Commands.add('getFixtureData', () => {
+            return cy.fixture('email.json');
+        });
+
+        describe('Dynamic Data Demo', () => {
+        it('Insert Email', () => {
+            
+            // Get data from the fixture file
+            cy.getFixtureData().then((fixtureData) => {
+            
+            // Extract the dataSet array from the fixture data
+            const dataSet = fixtureData.dataSet;
+
+            // Generate a random index
+            const randomIndex = Math.floor(Math.random() * dataSet.length);
+
+            // Use the random index to get a parameter value
+            const randomValue = dataSet[randomIndex];
+
+            // Log the selected random value
+            cy.log(`Email: ${randomValue}`);
+
+            //Insert email value into the element
+            cy.get('#input-email-field').type(randomValue);
+
+            });
+        });
+        });
+
+f) How do you add dependency to Cypress?
+
+    In order to add dependency into Cypress, we use Node Package Manager (npm). Reason being Cypress is JavaScript testing framework and relies on Node.js
+
+    Following are steps to add dependency to Cypress project. As example I will use package 'cypress-file-upload'.
+    This package simplifies file upload testing by providing a command to easily upload files.
+
+    1. In the command prompt, navigate to the project folder
+
+    2. Run following command;
+
+        npm install cypress-file-upload --save-dev
+
+    3. Once installed, verify inside 'package.json' and under the dependency that the package successfully added.
+
+        // package.json
+        {
+            "devDependencies": {
+                "cypress": "^13.5.0",
+                "cypress-file-upload": "^5.0.8"
+            }
+        }
+
+        // it appear under devDependencies because of the '--save-dev' string command. 
+        // it is a way to manage dependencies in a Node.js project and distinguish between packages needed for development versus those needed for the production runtime.
+
+    4. Add dependency later into Cypress test
+
+        // add dependency into test
+        import 'cypress-file-upload'
+
+        // Upload file
+        cy.get('input[type="file"]').attachFile('path/to/file');

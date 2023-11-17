@@ -16,9 +16,30 @@ Write a Cypress test case
  2. Verify that this form https://qainterview.cloud.joget.com/jw/web/userview/isr/isr/_/new_request cannot submit until all required fields are filled.
  3. Fill the form with your name as subject and upload a file to `Document Attachments 1` field. Due date is 1 week from the current date. Submit the form.
 
+**Question 4:**
+
+1
+2
+2
+4
+8
+12
+96
+
+Please figure out the math patterns of the number sequence.
+Then, using a loop to print out the number sequence and the next 5 numbers.
+You can hard code the first 2 numbers if needed.
+Use Javascript to complete this question.
+
+Tips:
+- There are 2 formulas used in the number sequence.
+- Starting from position 3, the number is a result from previous 2 numbers
+
 **Question 5:**
 
 Using Javascript. Create an array of 10 random integer numbers between 1 - 1000 and use console.log() to display each of the numbers in the array and the sum of the array.
+
+Question_5.js
 
 **Question 6:**
 
@@ -29,3 +50,15 @@ Go to https://www.joget.com/, use Javascript to make the nav bar disappear. Send
 1. Select the navigation bar element in development tool
 
 2. In the CSS under element.style add following code 'visibility: hidden;'
+
+**Question 7:**
+
+Answer the following in your own words.
+a) How do you install Cypress and set up your first test?
+b) How do you handle authentication and authorization in Cypress tests?
+c) What is the role of the Cypress Test Runner and what features does it offer?
+d) How do you integrate Cypress into a Continuous Integration (CI) pipeline?
+e) How do you handle dynamic data and input fields in Cypress tests?
+f) How do you add dependency to Cypress?
+
+Please refer to Question_7.txt for answer
