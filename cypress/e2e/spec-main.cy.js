@@ -172,6 +172,7 @@ describe('Question 3', () => {
 
     cy.get('.trigger').click()
 
+    // Condition to select next calendar month
     if(nextWeekMonth != currMonth)
     {
       cy.get('.ui-datepicker-next').click()
@@ -180,7 +181,15 @@ describe('Question 3', () => {
     {
       cy.get('#ui-datepicker-div > table > tbody > tr > td > a[data-date='+ nextWeekDay +']').click()
     }
+
+    cy.get('#assignmentComplete').click()
+
+    cy.get('h2').should('contain.text', 'My Requests')
+
+    cy.get('tbody > :nth-child(1) > .column_subject').should('contain.text', nameSubject)
   })
+
+  
   
 
 })
