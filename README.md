@@ -1,10 +1,10 @@
 # Joget
 
-**Question 1:** (***Done***)
+**Question 1:**
 
 Write a Cypress test case to verify this page https://qainterview.cloud.joget.com/jw/web/userview/appcenter/v/_/home is displayed correctly.
 
-**Question 2:** (***Done***)
+**Question 2:**
 
 Write a Cypress test case to verify that a user can navigate to different pages within https://www.joget.com/.
 
@@ -35,11 +35,17 @@ Tips:
 - There are 2 formulas used in the number sequence.
 - Starting from position 3, the number is a result from previous 2 numbers
 
+Solution : https://github.com/azrimangsor/joget/blob/main/Question_4.js
+
+Screenshot : ![alt text](https://github.com/azrimangsor/joget/blob/main/Question_4.png)
+
 **Question 5:**
 
 Using Javascript. Create an array of 10 random integer numbers between 1 - 1000 and use console.log() to display each of the numbers in the array and the sum of the array.
 
-Question_5.js
+Solution : https://github.com/azrimangsor/joget/blob/main/Question_5.js
+
+Screenshot : ![alt text](https://github.com/azrimangsor/joget/blob/main/Question_5.png)
 
 **Question 6:**
 
@@ -66,4 +72,4 @@ Answer the following in your own words.
 
 6. How do you add dependency to Cypress?
 
-Please refer to Question_7.txt for answer
+Answer : https://github.com/azrimangsor/joget/blob/main/Question_7.txt
